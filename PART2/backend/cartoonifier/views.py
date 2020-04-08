@@ -6,6 +6,8 @@ from django import forms
 import cv2
 try: 
     from src.output import cartoonifier as c
+    from src.output import grayscaler as g
+    _task1 = 0
     _task1 = 0
 except ModuleNotFoundError:
     print("ISSUES WITH IMPORT OUTPUT.PY")
@@ -49,13 +51,13 @@ def cartoon(request):
 #  cartoonified image it sends back a black and white image
 
 @csrf_exempt
-def bw(request):
+def bw(request): # functional view
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             
             handle_uploaded_file(request.FILES['file'])
-            imageio.imwrite(output_path,c(upload_path))
+            imageio.imwrite(output_path,g(upload_path))
 
             img = Image.open(output_path)
 
