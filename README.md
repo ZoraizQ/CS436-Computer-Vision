@@ -1,2 +1,0 @@
-# CV_Cartoonifier
- Assignment

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoonifier</title>
+</head>
+<style type="text/css">
+	span{
+		font-size: 14px;
+		font-style: italic;
+	}
+	input[type=file],[type=submit] {
+	  transition-duration: 0.4s;
+	   background-color: #4CAF50;
+	  border: none;
+	  color: white;
+	  padding: 16px 32px;
+	  text-decoration: none;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	}
+
+	input[type=button],[type=submit]:hover {
+	  background-color: #4CAF50; /* Green */
+	  color: white;
+	}
+</style>
+<body>
+{% ifequal task1 1 %}
+
+<h1>Yay! Task1 is completed. You must have successfully setup the enviroment. </h1>
+<p>Now you can proceed to step2</p>
+<span>If you are still seeing this message on attempting task2. Then you have not properly implemented it. Make sure you follow the instruction exactly as they are specified.</span>
+
+{% endifequal %}
+
+{% ifequal task1 0 %}
+{% load static %}
+
+<form enctype="multipart/form-data"  method="POST">
+    <input name="file" type="file"><input type="submit">
+</form>
+{% endifequal %}
+{% ifequal done 1 %}
+<img src="{% static 'upload.png' %}" height="450px" alt="My image" >
+<img src="{% static 'output.png' %}" height="450px" alt="My image">
+{% endifequal %}
+</body>
+</html>
